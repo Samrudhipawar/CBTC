@@ -1,0 +1,66 @@
+class ContactMaster:
+    def __init__(self):
+        self.contacts = {}
+
+    def add_contact(self, name, phone, email):
+        if name in self.contacts:
+            print(f"Contact with name {name} already exists.")
+        else:
+            self.contacts[name] = {'Phone': phone, 'Email': email}
+            print(f"Contact {name} added.")
+
+    def delete_contact(self, name):
+        if name in self.contacts:
+            del self.contacts[name]
+            print(f"Contact {name} deleted.")
+        else:
+            print(f"Contact with name {name} not found.")
+
+    def search_contact(self, name):
+        if name in self.contacts:
+            print(f"Contact found: {name}, Phone: {self.contacts[name]['Phone']}, Email: {self.contacts[name]['Email']}")
+        else:
+            print(f"Contact with name {name} not found.")
+
+    def display_contacts(self):
+        if self.contacts:
+            print("Contact List:")
+            for name, details in self.contacts.items():
+                print(f"Name: {name}, Phone: {details['Phone']}, Email: {details['Email']}")
+        else:
+            print("No contacts available.")
+
+def main():
+    cm = ContactMaster()
+    
+    while True:
+        print("\nContactMaster Menu:")
+        print("1. Add Contact")
+        print("2. Delete Contact")
+        print("3. Search Contact")
+        print("4. Display Contacts")
+        print("5. Exit")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            name = input("Enter contact name: ")
+            phone = input("Enter contact phone: ")
+            email = input("Enter contact email: ")
+            cm.add_contact(name, phone, email)
+        elif choice == '2':
+            name = input("Enter contact name to delete: ")
+            cm.delete_contact(name)
+        elif choice == '3':
+            name = input("Enter contact name to search: ")
+            cm.search_contact(name)
+        elif choice == '4':
+            cm.display_contacts()
+        elif choice == '5':
+            print("Exiting ContactMaster. Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    main()
